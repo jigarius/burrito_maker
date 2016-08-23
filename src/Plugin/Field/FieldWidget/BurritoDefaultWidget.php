@@ -100,7 +100,7 @@ class BurritoDefaultWidget extends WidgetBase implements WidgetInterface {
     );
 
     // Create a checkbox item for each topping on the menu.
-    foreach (burrito_maker_toppings('vege') as $topping_key => $topping_name) {
+    foreach (burrito_maker_get_toppings('vege') as $topping_key => $topping_name) {
       $element['toppings'][$topping_key] = array(
         '#title' => t($topping_name),
         '#type' => 'checkbox',

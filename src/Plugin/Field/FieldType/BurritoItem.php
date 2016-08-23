@@ -112,6 +112,16 @@ class BurritoItem extends FieldItemBase implements FieldItemInterface {
   /**
    * {@inheritdoc}
    */
+  public function preSave() {
+
+    // For vegetarian burritos, do not save meat topping data.
+    
+
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public static function defaultFieldSettings() {
     return array(
       'allow_meat' => 1,
