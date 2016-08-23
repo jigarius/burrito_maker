@@ -1,0 +1,9 @@
+# Package info
+type: module
+name: Burrito maker
+description: Custom field for custom burritos.
+core: 8.x
+
+# Dependencies
+dependences:
+  - field
