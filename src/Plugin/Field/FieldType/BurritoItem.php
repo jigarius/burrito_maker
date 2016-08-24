@@ -114,8 +114,12 @@ class BurritoItem extends FieldItemBase implements FieldItemInterface {
    */
   public function preSave() {
 
-    // For vegetarian burritos, do not save meat topping data.
-    
+    // For vegetarian burritos, ignore meat data.
+    if ($this->vegetarian) {
+      foreach (burrito_maker_get_toppings('meat') as $topping_key => $topping_name) {
+        $this->$topping_key = 0;
+      }
+    }
 
   }
 
