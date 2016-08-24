@@ -71,7 +71,7 @@ class BurritoDefaultWidget extends WidgetBase implements WidgetInterface {
       $element['meat'] = array(
         '#title' => t('Meat'),
         '#type' => 'fieldset',
-        '#process' => array(__CLASS__ . '::process_toppings_fieldset'),
+        '#process' => array(__CLASS__ . '::processToppingsFieldset'),
         // The meat fieldset should only be visible if the vegetarian
         // checkbox is not checked.
         '#states' => array(
