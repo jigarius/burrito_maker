@@ -31,7 +31,7 @@ A default widget type for our custom burrito field has already been specified in
 
 The _BurritoDefaultWidget::processToppingsFieldset()_ method solely exists as a helper. Its only purpose is to help flatten the user input array in such a way that the field names map to various database columns, instead of being nested under _meat_ and _toppings_ indexes in the POST array.
 
-NOTE: One might think that adding the _#tree_ attribute to these fieldsets can help flatten the fieldset's sub-fields, but it does't work that way. Hence, we use the _BurritoDefaultWidget::processToppingsFieldset()_ to do the trick.
+NOTE: One might think that adding the _#tree_ attribute to these fieldsets can help flatten the fieldset's sub-fields, but it does't work that way. If you set _#tree_ as _FALSE_ on the fieldset, though we might expect only the fieldset to be be flattened, what actually happens is every child of the fieldset is submitted as a root element in the main form. Hence, we use the _BurritoDefaultWidget::processToppingsFieldset()_ to do the trick.
 
 # The field formatter
 
