@@ -125,7 +125,7 @@ class BurritoDefaultFormatter extends FormatterBase {
           '#attributes' => array(
             'class' => array('burrito__vegetarian'),
           ),
-          '#markup' => t('<em>This is a vegetarian poutine</em>'),
+          '#markup' => t('This is a vegetarian poutine.'),
         );
       }
 
