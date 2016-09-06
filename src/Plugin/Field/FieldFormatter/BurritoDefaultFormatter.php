@@ -114,7 +114,7 @@ class BurritoDefaultFormatter extends FormatterBase {
           '#attributes' => array(
             'class' => array('field__item'),
           ),
-          '#markup' => $item->name,
+          '#plain_text' => $item->name,
         ),
       );
 
