@@ -69,7 +69,7 @@ class BurritoDefaultWidget extends WidgetBase implements WidgetInterface {
           '#default_value' => isset($item->$topping_key) ? $item->$topping_key : '',
         );
       }
-      
+
     }
 
     // Have a separate fieldset for non-meat toppings.
