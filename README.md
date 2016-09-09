@@ -27,7 +27,7 @@ So, the database tables are ready and your field type appears in the UI. But how
 
 A default widget type for our custom burrito field has already been specified in the _@FieldType_ declaration - the machine name being _burrito_default_. To define the structure of the widget, we implement [BurritoDefaultWidget](src/Plugin/Field/FieldWidget/BurritoDefaultWidget.php) with the following important method:
 
-* _BurritoDefaultWidget::formElement()_ - This method is responsible for defining the form items which map to various schema columns provided by the field type. In our case, this method looks a bit complicated (though it is quite simple) because we have various checkboxes for the toppings/ingredients of the burrito, placed inside 2 fieldsets - _Meat_ and _Toppings_ - The meat fieldset being hidden for vegetarian burritos.
+* _BurritoDefaultWidget::formElement()_ - This method is responsible for defining the form items which map to various schema columns provided by the field type. In our case, this method looks a bit complicated (though it is quite simple) because we have various checkboxes for the toppings/ingredients of the burrito, placed inside 2 fieldsets - _Meat_ and _Toppings_ - The meat fieldset being hidden if meat is disallowed by settings.
 
 The _BurritoDefaultWidget::processToppingsFieldset()_ method solely exists as a helper. Its only purpose is to help flatten the user input array in such a way that the field names map to various database columns, instead of being nested under _meat_ and _toppings_ indexes in the POST array.
 

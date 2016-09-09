@@ -118,17 +118,6 @@ class BurritoDefaultFormatter extends FormatterBase {
         ),
       );
 
-      // Is it vegetarian?
-      if ($item->vegetarian) {
-        $build['vegetarian'] = array(
-          '#type' => 'container',
-          '#attributes' => array(
-            'class' => array('burrito__vegetarian'),
-          ),
-          '#markup' => t('This is a vegetarian burrito.'),
-        );
-      }
-
       // Show toppings.
       $toppings_format = $this->getSetting('toppings');
       $build['toppings'] = array(

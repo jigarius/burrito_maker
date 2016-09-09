@@ -31,14 +31,10 @@ class BurritoItem extends FieldItemBase implements FieldItemInterface {
 
     $output = array();
 
-    // Create basic columns for the name and a vegetarian flag.
+    // Create basic column for burrito name.
     $output['columns']['name'] = array(
       'type' => 'varchar',
       'length' => 255,
-    );
-    $output['columns']['vegetarian'] = array(
-      'type' => 'int',
-      'length' => 1,
     );
 
     // Make a column for every topping.
@@ -64,9 +60,6 @@ class BurritoItem extends FieldItemBase implements FieldItemInterface {
     $properties['name'] = DataDefinition::create('string')
       ->setLabel(t('Name'))
       ->setRequired(FALSE);
-
-    $properties['vegetarian'] = DataDefinition::create('boolean')
-      ->setLabel(t('Vegetarian'));
 
     $topping_coll = burrito_maker_get_toppings();
     foreach ($topping_coll as $topping_key => $topping_name) {
@@ -95,33 +88,12 @@ class BurritoItem extends FieldItemBase implements FieldItemInterface {
       }
     }
 
-    // Has the user checked off the 'vegetarian' checkbox?
-    if (isset($item['vegetarian']) && $item['vegetarian'] == 1) {
-      $has_stuff = TRUE;
-    }
-
     // Has the user entered a name for the Burrito?
     if (isset($item['name']) && !empty($item['name'])) {
       $has_stuff = TRUE;
     }
 
     return !$has_stuff;
-
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function preSave() {
-
-    parent::preSave();
-
-    // For vegetarian burritos, ignore meat data.
-    if ($this->vegetarian) {
-      foreach (burrito_maker_get_toppings('meat') as $topping_key => $topping_name) {
-        $this->$topping_key = 0;
-      }
-    }
 
   }
 
