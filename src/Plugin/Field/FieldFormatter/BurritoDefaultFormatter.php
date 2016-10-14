@@ -87,11 +87,17 @@ class BurritoDefaultFormatter extends FormatterBase {
 
     $output = array();
 
+    // Iterate over every field item and build a renderable array
+    // (I call them rarray for short) for each item.
     foreach ($items as $delta => $item) {
 
       $build = array();
 
-      // Name of the Burrito.
+      // Render burrito name. Nothing fancy as such.
+      // We build a "container" element, within which we render
+      // 2 child elements: one, the label of the property (Name);
+      // two, the value of the property (The name of the burrito
+      // as entered by the user).
       $build['name'] = array(
         '#type' => 'container',
         '#attributes' => array(
@@ -109,11 +115,19 @@ class BurritoDefaultFormatter extends FormatterBase {
           '#attributes' => array(
             'class' => array('field__item'),
           ),
+          // We use #plain_text instead of #markup to prevent XSS.
+          // plain_text will clean up the burrito name and render an
+          // HTML entity encoded string to prevent bad-guys from
+          // injecting JavaScript.
           '#plain_text' => $item->name,
         ),
       );
 
-      // Show toppings.
+      // Render toppings (or ingredients) for the burrito.
+      // Here as well, we follow the same format as above.
+      // We build a container, within which, we render the property
+      // label (Toppings) and the actual values for the toppings
+      // as per configuration.
       $toppings_format = $this->getSetting('toppings');
       $build['toppings'] = array(
         '#type' => 'container',
@@ -132,6 +146,10 @@ class BurritoDefaultFormatter extends FormatterBase {
           '#attributes' => array(
             'class' => array('field__item'),
           ),
+          // The buildToppings method takes responsibility of generating
+          // markup for burrito toppings as per the format set in field
+          // configuration. We use $this->getSetting('toppings') above to
+          // read the configuration.
           'text' => $this->buildToppings($toppings_format, $item),
         ),
       );
@@ -154,6 +172,10 @@ class BurritoDefaultFormatter extends FormatterBase {
    *   A renderable array of toppings.
    */
   public function buildToppings($format, FieldItemInterface $item) {
+    // Instead of having a switch-case we build a dynamic method name
+    // as per a pre-determined format. In this way, if we will to add
+    // a new format in the future, all we will have to do is create a
+    // new method named "buildToppingsFormatName()".
     $callback = 'buildToppings' . ucfirst($format);
     return $this->$callback($item);
   }
@@ -172,6 +194,7 @@ class BurritoDefaultFormatter extends FormatterBase {
    * Format toppings as an unordered list.
    */
   public function buildToppingsList(FieldItemInterface $item) {
+    // "item_list" is a very handy render type.
     return array(
       '#theme' => 'item_list',
       '#items' => $item->getToppings(),
