@@ -8,7 +8,7 @@ use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Form\FormStateInterface;
 
 /**
- * Contains field widget "burrito_default".
+ * Field widget "burrito_default".
  *
  * @FieldWidget(
  *   id = "burrito_default",

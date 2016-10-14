@@ -8,12 +8,7 @@ use Drupal\Core\Field\FieldItemInterface;
 use Drupal\Core\Form\FormStateInterface;
 
 /**
- * @file
- * Contains field formatter "burrito_default".
- */
-
-/**
- * Contains field widget "burrito_default".
+ * Field formatter "burrito_default".
  *
  * @FieldFormatter(
  *   id = "burrito_default",

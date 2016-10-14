@@ -9,7 +9,7 @@ use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\Field\FieldItemBase;
 
 /**
- * Contains field type "burrito_maker_burrito".
+ * Field type "burrito_maker_burrito".
  *
  * @FieldType(
  *   id = "burrito_maker_burrito",
